@@ -15,7 +15,7 @@ class Entry(models.Model):
 	body = models.TextField()
 	slug = models.SlugField(max_length=200, unique=True)
 	created = models.DateTimeField(auto_now_add=True)
-	tags = models.CharField(max_length=50, unique=True)
+	tags = models.CharField(max_length=50)
 
 	def __unicode__(self):
 		return self.title
@@ -28,3 +28,9 @@ class Entry(models.Model):
 		verbose_name = "Blog Entry"
 		verbose_name_plural = "Blog Entries"
 		ordering = ["-created"]
+
+
+	def save(self, *args, **kwargs):
+		if not self.slug:
+			self.slug = slugify(self.title)
+		super(Entry, self).save(*args, **kwargs)
