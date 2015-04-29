@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'cspreports',
     'djangae.contrib.gauth',
     'djangae.contrib.security',
+    'blog',
 )
 
 MIDDLEWARE_CLASSES = (
