@@ -10,6 +10,19 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
+- kind: auth_group
+  properties:
+  - name: name
+  - name: __key__
+    direction: desc
+
+- kind: blog_entry
+  properties:
+  - name: created
+    direction: desc
+  - name: __key__
+    direction: desc
+
 - kind: cspreports_cspreport
   properties:
   - name: created
