@@ -8,5 +8,23 @@
       {{ object.created }} 
     </p>
   </div>
+{% empty %}
+    <p>Nothing to see here. This blog is empty!</p>
 {% endfor %}
+
+   
+
+<ul class="pager">
+	{% if page_obj.has_next %}
+    <li class="next">
+        <a href="?page={{ page_obj.next_page_number }}">Older Entries &rarr;</a>
+    </li>
+    {% endif %}
+	{% if page_obj.has_previous %}
+    <li class="next">
+        <a href="?page={{ page_obj.previous_page_number }}">Newer Entries &rarr;</a>
+    </li>
+    {% endif %}
+</ul>
+
 {% endblock %}
