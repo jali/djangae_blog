@@ -1,0 +1,17 @@
+@import url('http://fonts.googleapis.com/css?family=Lato:400,300,700,900');
+
+body {
+  min-height: 2000px;
+  padding-top: 70px;
+}
+
+.alignleft {
+    text-align: left;
+}
+.alignright {
+    text-align: right;
+}
+
+.aligncenter {
+    text-align: center;
+}
