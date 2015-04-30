@@ -7,16 +7,19 @@
 	
 	<a class="btn btn-warning btn-sm" href="{% url 'entry-delete' pk=object.pk %}">
 	<span class="glyphicon glyphicon-trash"> delete<span></a>
-
 {% endif %}
 
   <div class="post">
-    <h2><a href="{% url 'entry-detail' slug=object.slug %}">{{ object.title }}</a></h2>
-    <p class="meta">
-      {{ object.created }}
-
-    </p>
+    <h1>{{ object.title }}</a></h1>
+    <span class="meta small">
+      created by {{ user.email }}
+      on {{ object.created }}
+    </span>
+    <div class="jumbotron">
+    <p>
     {{ object.body }}
+    </p>
+    </div>
   </div>
 
 {% endblock %}
