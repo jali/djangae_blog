@@ -40,7 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'djangosecure',
     'csp',  
-    'cspreports',
+    # 'cspreports',
     'djangae.contrib.gauth',
     'djangae.contrib.gauth.datastore',
     'djangae.contrib.security',
@@ -52,6 +52,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'djangae.contrib.gauth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # 'csp.middleware.CSPMiddleware',
     'session_csrf.CsrfMiddleware',
@@ -127,6 +128,11 @@ CSP_CONNECT_SRC = ("'self'", "plus.google.com", "www.google-analytics.com")
 from djangae.contrib.gauth.settings import *
 
 
-AUTHENTICATION_BACKENDS = (
-    'djangae.contrib.gauth.datastore.backends.AppEngineUserAPIBackend',
-)
+# AUTHENTICATION_BACKENDS = (
+#     'djangae.contrib.gauth.datastore.backends.AppEngineUserAPIBackend',
+# )
+# AUTHENTICATION_BACKENDS = (
+#     'djangae.contrib.gauth.datastore.backends.AppEngineUserAPIBackend',
+#     # 'djangae.contrib.gauth.datastore.backends.AppEngineUserAPI',
+#     'django.contrib.auth.backends.ModelBackend',
+# )

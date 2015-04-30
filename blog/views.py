@@ -18,6 +18,7 @@ class LoginRequiredMixin(object):
     def dispatch(self, request, *args, **kwargs):
         return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
 
+
 class BlogIndex(generic.ListView):
     queryset = models.Entry.objects.all()
     template_name = "index.html"
@@ -45,6 +46,7 @@ class BlogAddEntry(LoginRequiredMixin, generic.View):
         return render(request, self.template_name, {
             'form': form
         })
+
 
 class BlogEditEntry(LoginRequiredMixin, generic.UpdateView):
 	template_name = "edit.html"
