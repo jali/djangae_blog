@@ -1,9 +1,7 @@
 from django.shortcuts import render
-
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.core.urlresolvers import reverse
-from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
@@ -13,9 +11,6 @@ from . import forms
 from . import models
 
 class LoginRequiredMixin(object):
-    """
-    Wrapper around the `login_required` decorater for use with class based views.
-    """
     redirect_field_name = REDIRECT_FIELD_NAME
     login_url = None
 
@@ -51,29 +46,23 @@ class BlogAddEntry(LoginRequiredMixin, generic.View):
             'form': form
         })
 
-class BlogEditEntry(LoginRequiredMixin, generic.View):
-    template_name = "edit.html"
+class BlogEditEntry(LoginRequiredMixin, generic.UpdateView):
+	template_name = "edit.html"
+	model = models.Entry
+	form_class = forms.EntryForm
 
-    def get(self, request, id=None):
-        form = forms.EntryForm(request=request)
-        return render(request, self.template_name, {'form':form})
+	def get_success_url(self):
+		return reverse('index')
 
-    def post(self, request):
-        form = forms.EntryForm(request.POST, request=request)
-        if form.is_valid():
-            newpost = form.save()
-            # return HttpResponseRedirect(reverse('entry', args=[newpost.slug,]))
 
-        return render(request, self.template_name, {
-            'form': form
-        })
-
+class BlogDeleteEntry(LoginRequiredMixin, generic.DeleteView):
+	model = models.Entry
+	template_name = "entry_confirm_delete.html"
+	def get_success_url(self):
+		return reverse('index')
 
 
 class LoginView(generic.View):
-    """
-    A simple login page that uses Google App Engine authentication
-    """
     def get(self, request):
         index = reverse('index')
         url = users.create_login_url(index)
@@ -81,10 +70,11 @@ class LoginView(generic.View):
 
 
 class LogoutView(generic.View):
-    """
-    A simple logout page that uses Google App Engine authentication
-    """
     def get(self, request):
         index = reverse('index')
         url = users.create_logout_url(index)
         return HttpResponseRedirect(url)
+
+
+class PageNotFound(generic.TemplateView):
+	template_name = '404.html'
