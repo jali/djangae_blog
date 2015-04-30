@@ -17,8 +17,13 @@ class EntryForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		self.request = kwargs.pop('request', None)
+		print self.request
 		super(EntryForm, self).__init__(*args, **kwargs)
 		self.fields['owner'].widget = forms.HiddenInput()
+		try:
+			self.fields['owner'].initial = self.request.user.pk
+		except:
+			pass
 
 
 	class Meta:
