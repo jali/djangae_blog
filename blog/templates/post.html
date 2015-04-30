@@ -1,7 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if user.is_authenticated %}
+	<a class="btn btn-primary btn-sm" href="{% url 'entry-edit' slug=object.slug %}">
+	<span class="glyphicon glyphicon-pencil"> edit<span></a>
+	
+	<a class="btn btn-warning btn-sm" href="{% url 'entry-delete' pk=object.pk %}">
+	<span class="glyphicon glyphicon-trash"> delete<span></a>
 
+{% endif %}
+{% if object.title %}
   <div class="post">
     <h2><a href="{% url 'entry-detail' slug=object.slug %}">{{ object.title }}</a></h2>
     <p class="meta">
@@ -10,4 +18,7 @@
     </p>
     {{ object.body }}
   </div>
+{% else %}
+    <p>Nothing to see here. This entry doesn't exist!</p>
+{% endif %}
 {% endblock %}
