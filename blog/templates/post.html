@@ -9,7 +9,7 @@
 	<span class="glyphicon glyphicon-trash"> delete<span></a>
 
 {% endif %}
-{% if object.title %}
+
   <div class="post">
     <h2><a href="{% url 'entry-detail' slug=object.slug %}">{{ object.title }}</a></h2>
     <p class="meta">
@@ -18,7 +18,5 @@
     </p>
     {{ object.body }}
   </div>
-{% else %}
-    <p>Nothing to see here. This entry doesn't exist!</p>
-{% endif %}
+
 {% endblock %}

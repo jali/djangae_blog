@@ -9,7 +9,7 @@
     </p>
   </div>
 {% empty %}
-    <p>Nothing to see here. This blog is empty!</p>
+    <p>Nothing to see here.</p>
 {% endfor %}
 
    
@@ -20,6 +20,7 @@
         <a href="?page={{ page_obj.next_page_number }}">Older Entries &rarr;</a>
     </li>
     {% endif %}
+    
 	{% if page_obj.has_previous %}
     <li class="next">
         <a href="?page={{ page_obj.previous_page_number }}">Newer Entries &rarr;</a>
