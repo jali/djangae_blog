@@ -1,4 +1,4 @@
-application: djangae-scaffold
+application: djalal-blog
 version: 1
 runtime: python27
 api_version: 1
