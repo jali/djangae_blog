@@ -12,9 +12,11 @@
   <div class="post">
     <h1>{{ object.title }}</a></h1>
     <span class="meta small">
-      created by 
-      {{ object.owner.email }}
+      created {% if user.is_authenticated %}by 
+                {{ object.owner.email }}
+              {% endif %}
       on {{ object.created }}
+
     </span>
     <div class="jumbotron">
     <p>

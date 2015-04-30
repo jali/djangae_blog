@@ -34,13 +34,22 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li>
-                        <a href="{% url "entry-new" %}">Add Entry</a>
+                        <a href="{% url "entry-new" %}">Create</a>
                     </li>
-                    <li>
-                        <a href="{% url "logout" %}">Logout</a>
-                    </li>
-                    <li>
-                        <p class="navbar-text">Welcome {{ user.email }}</p>
+                    <li class='dropdown'>
+                            <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                            {{ user.email }}
+                            <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li role="presentation">
+                                    <a href="{% url "logout" %}" role="menuitem" tabindex="-1">
+                                        <span class="glyphicon glyphicon-off">
+                                            Logout
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
                     </li>
                     {% else %}
                     <li>
@@ -59,7 +68,6 @@
                     {% block content %}
                     {% endblock %}
                     <!-- Pager -->
-                    
                 </div>
             </div>
         </div>
@@ -69,33 +77,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">Djangae Blog &copy; 2015 | Coded with ♥ by Jalal Maqdisi</p>
+                    <p class="copyright text-muted">Built with ♥ by Jalal Maqdisi using Djangae &copy; 2015</p>
                 </div>
             </div>
         </div>
