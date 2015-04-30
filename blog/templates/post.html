@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% if user.is_authenticated %}
+{% if user.email == object.owner.email %}
 	<a class="btn btn-primary btn-sm" href="{% url 'entry-edit' slug=object.slug %}">
 	<span class="glyphicon glyphicon-pencil"> edit<span></a>
 	
@@ -12,7 +12,8 @@
   <div class="post">
     <h1>{{ object.title }}</a></h1>
     <span class="meta small">
-      created by {{ user.email }}
+      created by 
+      {{ object.owner.email }}
       on {{ object.created }}
     </span>
     <div class="jumbotron">
